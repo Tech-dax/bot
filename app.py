@@ -13,13 +13,13 @@ load_dotenv(dotenv_path=".env")
 
 client_id = os.getenv("APP_ID")
 client_secret = os.getenv("APP_SECRET")
-redirect_uri = 'https://10b864985df0.ngrok-free.app/oauth-callback'
+redirect_uri = os.getenv('REDIRECT_URI')
 
 
 app = Flask(__name__)
 
 app.secret_key = os.getenv('SECRET_KEY', 'dev_key')
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql+psycopg://bot_db_cxpc_user:sNrTkldbQceyjS5FJvHNOWkP1Vi3ni0g@dpg-d1qm13k9c44c739omebg-a.oregon-postgres.render.com/bot_db_cxpc"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
@@ -42,7 +42,6 @@ FB_OAUTH = FacebookOAuth(
 
 # Création de la base au démarrage
 with app.app_context():
-    db.drop_all()
     db.create_all()
 
 
