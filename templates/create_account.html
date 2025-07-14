@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Créer un compte</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+</head>
+<body>
+    <div class="container mt-5" style="max-width: 500px;">
+        <h2 class="text-center mb-4">Créer un compte</h2>
+
+        <!-- Affichage des messages flash -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+          {% endfor %}
+        {% endwith %}
+
+        <!-- Formulaire d'inscription -->
+        <form method="post">
+            <div class="mb-3">
+                <label for="name" class="form-label">Nom complet</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Votre nom" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Adresse e-mail</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="exemple@email.com" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Mot de passe</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Choisissez un mot de passe" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">S’inscrire</button>
+        </form>
+
+        <div class="text-center mt-3">
+            <p>Déjà un compte ? <a href="{{ url_for('login_bot') }}">Se connecter</a></p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Bienvenue - Bot Platform</title>
+
+  <!-- Bootstrap CSS via CDN -->
+  <link href="{{url_for('static',filename='css/bootstrap.min.css')}}" rel="stylesheet">
+  <!-- Vue.js local -->
+  <script src="{{ url_for('static', filename='js/vue.global.prod.js') }}"></script>
+  
+  <!-- Bootstrap JS + Popper (si besoin de composants interactifs) -->
+  <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</head>
+<body>
+
+  <div id="app" class="container text-center mt-5">
+    <h1>[[ titre ]]</h1>
+    <p class="lead">[[ message ]]</p>
+    
+    <a href="/register" class="btn btn-primary m-2">S’enregistrer</a>
+    <a href="/manage" class="btn btn-success m-2">Gérer mes pages</a>
+    <a href="{{ url_for('logout') }}" class="btn btn-outline-danger mt-5">Se déconnecter</a>
+
+  </div>
+
+
+  <!-- Script Vue -->
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      delimiters: ['[[', ']]'],
+      data() {
+        return {
+          titre: 'Bienvenue sur la plateforme Bot',
+          message: 'Créez votre compte bot et gérez vos pages Facebook facilement.'
+        }
+      }
+    }).mount('#app');
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>register BOT</title>
+    <link href="{{url_for('static',filename='css/bootstrap.min.css')}}" rel="stylesheet">
+    <script src="{{ url_for('static',filename='js/vue.global.prod.js') }}"></script>
+    <scripts src="{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}"></script>
+</head>
+<body>
+    <div id="app" class="container text-center mt-5" >
+        <h2>Entrer votre code d’accès</h2>
+        <form method="post"  class="w-25 mt-5 mx-auto">
+          <input name="code" required class="form-control" placeholder="Code fourni par l'admin">
+          <button type="submit" class="btn btn-primary mt-2">Valider</button>
+        </form>
+        {% if error %}<p style="color:red">{{ error }}</p>{% endif %}
+      </div>
+    </div>
+</body>
+</html>
